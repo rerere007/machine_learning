@@ -69,7 +69,7 @@ def read_image(path, center=False, flip=False):
     return image
 
 
-mean_image = np.load(os.path.join(PATH_TO_MY_DATA, args.mean))
+mean_image = np.load(os.path.join("./models/", args.mean))
 
 model = nin.NIN()
 serializers.load_hdf5(os.path.join('models', args.model), model)
@@ -110,12 +110,12 @@ if __name__ == '__main__':
         index = np.argmax(score.data[0].tolist())
         X.append(index)
         #categories = np.loadtxt("labels.txt", str, delimiter='\t')
-        categories = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
-        top_k = 5
-        prediction = list(zip(score.data[0].tolist(), categories))
-        prediction.sort(key = lambda x: x, reverse=True)
-        for rank, (score, color) in enumerate(prediction[:top_k], start=1):
-            print('#%d | %d color | %4.1f%%' % (rank, color, score * 100))
+        #categories = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+        #top_k = 5
+        #prediction = list(zip(score.data[0].tolist(), categories))
+        #prediction.sort(key = lambda x: x, reverse=True)
+        #for rank, (score, color) in enumerate(prediction[:top_k], start=1):
+        #    print('#%d | %d color | %4.1f%%' % (rank, color, score * 100))
         print("1 rank index is: ", index)
     submit = create_submit(X, files)
     submit.to_csv(PATH_TO_SUBMIT_FILE, index=None, header=None)

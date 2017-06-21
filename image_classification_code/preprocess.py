@@ -98,5 +98,5 @@ if __name__ == '__main__':
 
     dataset = chainer.datasets.LabeledImageDataset(PATH_TO_MY_DATA + "/train_master.txt", ".")
     mean = compute_mean(dataset)
-    np.save(PATH_TO_MY_DATA + "/mean.npy", mean)
+    np.save("./models" + "/mean.npy", mean)
 
